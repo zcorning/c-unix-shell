@@ -1,0 +1,22 @@
+To use this program, compile the code using the Makefile. Then run the nush executable to start the shell. To exit the shell, run the exit command. The program can also accept one argument which can be a file containing shell commands. In this case, the prompt will not display for the user to enter their own commands, but instead, the program will read from the given file.
+
+Operators: this shell can handle many operators as well as all shell commands.
+ - Redirect input ( < )
+ - Redirect output ( > )
+ - Pipe ( | )
+ - Background ( & )
+ - And ( && )
+ - OR ( || )
+ - Semicolon ( ; )
+ - Variable assignment ( = ) - and $VAR with the variable name to use the assigned variable
+It can also handle inputs with quotes and escaped characters.
+
+The nush.h file and the nush.c file are the main files of the project. The nush.c file calls the execute function which executes the shell and handles all the commands.
+
+The ast.h header and the ast.c file handle creating the abstract syntax tree for the command's execution. This tree has nodes which are the operators and leaves which are the base commands. The tree determines the execution order of the commands and how their return values should be combined.
+
+The tokens.h and tokens.c files handle parsing the input either from the file or from the user into a list of tokens. The tokens are then used later to build the abstract syntax tree.
+
+The hashmap.c and hashmap.h files are used by the nush.c file to store variables. The hashmap maps from String keys to String values. The hashmap uses the linear probing strategy for storing the key-value pairs.
+
+Lastly, the svec.h header and svec.c file are used to create variable length arrays. The array reallocates and doubles in size each time the capacity of the list is reached. Otherwise, it will just place new elements in the existing space at the end of the list.
